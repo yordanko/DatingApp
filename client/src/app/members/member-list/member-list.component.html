@@ -1,1 +1,12 @@
-<p>member-list works!</p>
+<div class="row">
+    <div class="col2">   
+        <ng-container  *ngIf="members">     
+            Members:
+            <ul type="A">
+                <div *ngFor="let item of members">
+                    <li><a [routerLink]="['/members/', item.username]">{{item.username}}</a></li>
+                </div>
+            </ul>
+        </ng-container>
+    </div>
+</div>

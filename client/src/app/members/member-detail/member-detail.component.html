@@ -1,1 +1,8 @@
-<p>member-detail works!</p>
+
+<div class="row">
+    <div class="col-4" *ngIf="member">
+        <p>Username: {{member.username}}</p>
+        <p>Age: {{member.age}}</p>
+        <p>Introduction: {{member.introduction}}</p>
+    </div>
+</div>
