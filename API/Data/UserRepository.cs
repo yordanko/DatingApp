@@ -63,5 +63,13 @@ namespace API.Data
         {
             _context.Entry(user).State = EntityState.Modified;
         }
+
+        public async Task<AppUser> SaveUserAsync(AppUser user)
+        {
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+
+            return await GetUserByUsernameAsync(user.UserName);
+        }
     }
 }

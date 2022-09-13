@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using API.Extensions;
 
 namespace API.Entities
@@ -27,5 +28,43 @@ namespace API.Entities
         //     return DateOfBirth.CalculateAge();
         // }
 
+    }
+    public class Testing : IEquatable<Testing>
+    {
+        private readonly string _myString;
+        private readonly int _initValue;
+
+        public int GetInitValue() => _initValue;
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Testing);
+        }
+
+        public bool Equals(Testing other)
+        {
+            return other != null &&
+                   _myString == other._myString &&
+                   _initValue == other._initValue &&
+                   MyProperty == other.MyProperty;
+        }
+
+        public int MyProperty { get; set; }
+
+        public Testing(int initValue, string myString)
+        {
+            _initValue = initValue;
+            _myString = myString;
+        }
+
+        public override int GetHashCode()
+        {
+            return _initValue + _myString.GetHashCode();
+        }
+
+        public string ThisIsMyMethod()
+        {
+            return "abc" + _myString;
+        }
     }
 }

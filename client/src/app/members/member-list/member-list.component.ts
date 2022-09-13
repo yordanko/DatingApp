@@ -8,20 +8,18 @@ import { MembersService } from 'src/app/_services/members.service';
   styleUrls: ['./member-list.component.css']
 })
 export class MemberListComponent implements OnInit {
-members: Member[];
+  members: Member[];
 
   constructor(private memberService: MembersService) { }
 
   ngOnInit(): void {
-    this.getMembers()
+    this.loadMembers();
   }
 
-  getMembers(){
-    this.memberService.getMembers().subscribe(members=>{
-      members.forEach(member=>{
-        member.username = member.username[0].toUpperCase()+ member.username.substring(1)
-      })
+  loadMembers() {
+    this.memberService.getMembers().subscribe(members => {
       this.members = members;
-    });
+    })
   }
+
 }

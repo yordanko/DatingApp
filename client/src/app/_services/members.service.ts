@@ -1,29 +1,25 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Member } from '../_models/member';
-
-//const myUser = JSON.parse(localStorage.getItem('user'));
-// const httpOptions ={ 
-//   headers: new HttpHeaders({
-//     Authorization: 'Bearer ' + myUser?.token
-//   })
-//   }
+import { HttpClient } from '@angular/common/http';
+import { Member, UpdateMember } from '../_models/member';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MembersService {
-baseUrl = environment.apiUrl;
-  constructor(private http:HttpClient) { }
+  baseUrl = environment.apiUrl;
 
-  
+  constructor(private http: HttpClient) { }
 
-  getMembers(){
-    return this.http.get<Member[]>(this.baseUrl+ 'users');
+  getMembers() {
+    return this.http.get<Member[]>(this.baseUrl + 'users');
   }
 
-  getMember(username: string){
-    return this.http.get<Member>(this.baseUrl + 'users/' + username)
+  getMember(username: string) {
+    return this.http.get<Member>(this.baseUrl + 'users/' + username);
+  }
+
+  updateMember(member: UpdateMember){
+    return this.http.put(this.baseUrl + 'users', JSON.stringify(member), {headers:{'content-type': 'application/json'}});
   }
 }
